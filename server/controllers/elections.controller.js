@@ -1,52 +1,34 @@
 const router = require("express").Router();
 const {
-  getAllUsers,
-  getOneUser,
-  getUserById,
-  addUser,
-  updateUserById,
-  deleteUserById,
-} = require("../models/users.model");
-
-// only req.body object data will be pass from here ..
+  getAllElections,
+  getElectionById,
+  AddElection,
+  updateElection,
+  deleteElection,
+} = require("../models/elections.model");
 
 router.get("/", async (req, res) => {
-  let result = await getAllUsers();
-  return controllerResponseAndErrorHanlder(result, res);
-});
-
-router.post("/getParticularUser", async (req, res) => {
-  let result = await getOneUser(req.body);
+  let result = await getAllElections();
   return controllerResponseAndErrorHanlder(result, res);
 });
 
 router.get("/getById", async (req, res) => {
-  let result = await getUserById(req.body);
+  let result = await getElectionById(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 
-router.post("/register", async (req, res) => {
-  let result = await addUser(req.body);
+router.post("/add", async (req, res) => {
+  let result = await AddElection(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 
 router.put("/update", async (req, res) => {
-  // the req.body format will be
-  //    {
-  //     "id" : "1705920510203",
-  //     "data" : [
-  //         {
-  //             "column" : "userName",
-  //             "value" : "userTwo2222"
-  //         }
-  //     ]
-  // }
-  let result = await updateUserById(req.body);
+  let result = await updateElection(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 
 router.delete("/delete", async (req, res) => {
-  let result = await deleteUserById(req.body);
+  let result = await deleteElection(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 

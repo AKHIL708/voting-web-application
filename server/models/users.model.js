@@ -2,6 +2,7 @@ const {
   getAll,
   getOneBasedOnCondition,
   getById,
+  insertRow,
   deleteOne,
   update,
 } = require("../utils/dbFunctions");
@@ -23,6 +24,12 @@ const getUserById = async (id) => {
   let result = await getById(tableName, id);
   return result;
 };
+
+const addUser = async (conditions) => {
+  let result = await insertRow(tableName, conditions);
+  return result;
+};
+
 const updateUserById = async (id) => {
   let result = await update(tableName, id);
   return result;
@@ -36,6 +43,7 @@ module.exports = {
   getAllUsers,
   getOneUser,
   getUserById,
-  deleteUserById,
+  addUser,
   updateUserById,
+  deleteUserById,
 };

@@ -1,56 +1,38 @@
 const router = require("express").Router();
 const {
-  getAllUsers,
-  getOneUser,
-  getUserById,
-  addUser,
-  updateUserById,
-  deleteUserById,
-} = require("../models/users.model");
-
-// only req.body object data will be pass from here ..
+  getAllCandidates,
+  getCandidateById,
+  addCandidate,
+  updateCandidate,
+  deleteCandidate,
+} = require("../models/candidate.model");
 
 router.get("/", async (req, res) => {
-  let result = await getAllUsers();
-  return controllerResponseAndErrorHanlder(result, res);
-});
-
-router.post("/getParticularUser", async (req, res) => {
-  let result = await getOneUser(req.body);
+  let result = await getAllCandidates();
   return controllerResponseAndErrorHanlder(result, res);
 });
 
 router.get("/getById", async (req, res) => {
-  let result = await getUserById(req.body);
+  let result = await getCandidateById(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 
-router.post("/register", async (req, res) => {
-  let result = await addUser(req.body);
+router.post("/add", async (req, res) => {
+  let result = await addCandidate(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 
 router.put("/update", async (req, res) => {
-  // the req.body format will be
-  //    {
-  //     "id" : "1705920510203",
-  //     "data" : [
-  //         {
-  //             "column" : "userName",
-  //             "value" : "userTwo2222"
-  //         }
-  //     ]
-  // }
-  let result = await updateUserById(req.body);
+  let result = await updateCandidate(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 
 router.delete("/delete", async (req, res) => {
-  let result = await deleteUserById(req.body);
+  let result = await deleteCandidate(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });
 
-// customer functions ..
+// custom function
 function controllerResponseAndErrorHanlder(result, res) {
   if (result.err) {
     console.log(result);
