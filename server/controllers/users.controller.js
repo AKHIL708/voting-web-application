@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
   return controllerResponseAndErrorHanlder(result, res);
 });
 
-router.post("/getParticularUser", async (req, res) => {
+router.post("/login", async (req, res) => {
   let result = await getOneUser(req.body);
   return controllerResponseAndErrorHanlder(result, res);
 });

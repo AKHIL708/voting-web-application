@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import bjp from "../../assets/images/bjp.png";
 import CheckIcon from "@mui/icons-material/Check";
-import { useNavigate } from "react-router-dom";
-import "./Elections.scss";
+import "./CandidateSelection.scss";
 
-function Elections() {
-  const navigate = useNavigate();
-  const [Elections, setElections] = useState([
+function CandidateSelection() {
+  const [candidates, setCandidates] = useState([
     {
       candidate_id: "123",
       name: "akhil",
@@ -33,18 +31,15 @@ function Elections() {
   const SelectCard = (index) => {
     setSelected(index);
   };
-  const SelectCandidate = () => {
-    navigate("/candidates");
-  };
 
   return (
     <>
       <section id="candidate-selection">
         <header>
-          <h1>Select Election</h1>
+          <h1>Select Candidate</h1>
         </header>
         <div className="cards">
-          {Elections.map((data, index) => {
+          {candidates.map((data, index) => {
             return (
               <>
                 <div className="card" onClick={() => SelectCard(index)}>
@@ -73,11 +68,11 @@ function Elections() {
           })}
         </div>
         <div className="select-btn">
-          <button onClick={() => SelectCandidate()}>Select Candidate</button>
+            <button>Select</button>
         </div>
       </section>
     </>
   );
 }
 
-export default Elections;
+export default CandidateSelection;
